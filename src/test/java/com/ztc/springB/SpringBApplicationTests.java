@@ -11,7 +11,7 @@ public class SpringBApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("commit pull");
+		System.out.println("commit branch01");
 	}
 
 }
