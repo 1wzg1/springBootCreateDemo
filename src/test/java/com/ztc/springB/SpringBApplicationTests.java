@@ -11,6 +11,7 @@ public class SpringBApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("commit test！");
 	}
 
 }
