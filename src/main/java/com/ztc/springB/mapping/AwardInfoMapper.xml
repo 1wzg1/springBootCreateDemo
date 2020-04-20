@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztc.springB.dao.AwardInfoMapper">
+
+    <insert id="insertAwardInfo" parameterType="com.ztc.springB.dto.AwardInfoExportDTO">
+         INSERT INTO test.iot_period_award_info
+        (cid, award_name, award_type, activity_type, face_value, status, award_no, award_word, award_code, card_start_time, card_end_time, create_time, modify_time, create_by, modify_by, org_id, dr)
+        VALUES(0, '', '', '', '', '0', '', '', '', '2020-04-01 12:32:55', '2020-04-01 12:32:55', '2020-04-01 12:32:55', '2020-04-01 12:32:55', '', '', '', 1);
+     </insert>
+</mapper>

@@ -4,11 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>to jsp</title>
-</head>
-<body>
-    ${hello}
-    <%--???????????--%>
-    <a href="C:\Users\Administrator\Desktop\test.xls">????</a>
+    <title>test</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("p").click(function(){
+                window.location.href = 'http://localhost:8888/excel/getUser';
+            });
+        });
+    </script>
+    </head>
+    <body>
+    <p>download</p>
 </body>
 </html>

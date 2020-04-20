@@ -6,6 +6,7 @@ package com.ztc.springB.service;
 import java.util.List;
 
 import com.ztc.springB.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author wangzhiguo
@@ -14,4 +15,6 @@ import com.ztc.springB.model.User;
  */
 public interface IUserService {
 	   public List<User> getList();
+
+    void saveExcel(MultipartFile file, String uuid) throws InterruptedException;
 }
