@@ -138,5 +138,9 @@ public class UserServiceImpl implements IUserService {
 		m.put("data",asynInfo);
 		return m;
 	}
+	@Override
+	public Integer insertList(Map<String, Long> map) {
+		return userMapper.insertList(map);
+	}
 
 }

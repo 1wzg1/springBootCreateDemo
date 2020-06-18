@@ -6,9 +6,13 @@ package com.ztc.springB.controller;
 import java.io.*;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import com.ztc.springB.bean.Person;
+import com.ztc.springB.dto.ExportUpdateDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -93,6 +97,66 @@ public class TestController {
 
    @PostMapping("/import")
    public void importData(MultipartFile file) throws IOException {
+   }
+
+
+   public static void main(String[] args) {
+      List<Person> persons = new ArrayList<>();//列表
+      persons.add(new Person("aaa", 6));
+      persons.add(new Person("bbb", 8));
+      persons.add(new Person("aaa", 12));
+      persons.add(new Person("ccc", 20));
+      persons.add(new Person("ddd", 35));
+      persons.add(new Person("aaa", 99));
+      persons.add(new Person("bbb", 67));
+
+      // 分组收集
+      Map<String, List<Person>> collect = persons.stream().collect(Collectors.groupingBy(Person::getName));
+      System.out.println("分组收集结果：");
+      collect.forEach((k, v) -> System.out.println(k + v));
+
+      //分组收集 统计个数
+      Map<String, Long> map = persons.stream()
+              .collect(Collectors.groupingBy(Person::getName, Collectors.counting()));
+      List<ExportUpdateDTO> list1= persons.stream()
+              .collect(Collectors.groupingBy(Person::getName, Collectors.counting()))
+              .entrySet().stream().map(e -> new ExportUpdateDTO(e.getKey(), e.getValue())).collect(Collectors.toList());
+      System.out.println("分组统计结果：");
+      map.forEach((k, v) -> System.out.println(k + ":" +  v));
+      List<ExportUpdateDTO> list= map.entrySet().stream().map(e -> new ExportUpdateDTO(e.getKey(), e.getValue())).collect(Collectors.toList());
+      list.forEach(ExportUpdateDTO-> System.out.println(ExportUpdateDTO));
+
+      for (Map.Entry<String, List<Person>> entry  : collect.entrySet()) {
+         Long i = 1L;
+         String key = entry.getKey();
+         List<Person> values = entry.getValue();
+         for (Person value : values) {
+            value.setTotal(map.get(key));     // 总数
+            value.setTime(i++);                 // 次数
+         }
+      }
+      System.out.println("将分组统计结果写回源列表：");
+      persons.forEach((person)->System.out.println(person));
+   }
+
+   @RequestMapping("/insert")
+   @ResponseBody
+   @ApiImplicitParam(name = "user", value = "单个用户信息", dataType = "User")
+   @ApiOperation(value = "获取用户信息",notes = "获取信息")
+   public void insert(){
+      List<Person> persons = new ArrayList<>();
+      persons.add(new Person("aaa", 6));
+      persons.add(new Person("bbb", 8));
+      persons.add(new Person("aaa", 12));
+      persons.add(new Person("ccc", 20));
+      persons.add(new Person("ddd", 35));
+      persons.add(new Person("aaa", 99));
+      persons.add(new Person("bbb", 67));
+
+      Map<String, Long> map = persons.stream()
+              .collect(Collectors.groupingBy(Person::getName, Collectors.counting()));
+      userService.insertList(map);
+
    }
 
 

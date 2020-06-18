@@ -8,4 +8,12 @@
     <select id="getList" resultMap="BaseResultMap">
          select * from user 
      </select>
+    <select id="insertList" resultType="java.lang.Integer" parameterType="java.util.Map">
+        INSERT INTO user
+        (id, name)
+        VALUES
+        <foreach collection="map.keys" item="key" index="value" separator=",">
+            ( ${map[key]},#{key})
+        </foreach>
+    </select>
 </mapper>
