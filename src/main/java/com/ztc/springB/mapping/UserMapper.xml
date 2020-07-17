@@ -16,4 +16,10 @@
             ( ${map[key]},#{key})
         </foreach>
     </select>
+
+    <insert id="insertUser" parameterType="com.ztc.springB.model.User">
+        INSERT INTO test.`user`
+            (id, name, create_time)
+            VALUES(#{id}, #{name}, #{create_time})
+    </insert>
 </mapper>

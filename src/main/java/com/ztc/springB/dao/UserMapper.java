@@ -3,13 +3,12 @@
  */
 package com.ztc.springB.dao;
 
+import com.ztc.springB.model.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-
-import com.ztc.springB.model.User;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author wangzhiguo
@@ -23,4 +22,5 @@ public interface UserMapper {
 
 	Integer insertList(@Param(value = "map")Map<String, Long> map);
 
+	void insertUser(User user);
 }

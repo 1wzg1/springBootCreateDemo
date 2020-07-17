@@ -3,11 +3,11 @@
  */
 package com.ztc.springB.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.ztc.springB.model.User;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangzhiguo
@@ -21,4 +21,5 @@ public interface IUserService {
 
     Integer insertList(Map<String, Long> map);
 
+    void insertUser(User user);
 }

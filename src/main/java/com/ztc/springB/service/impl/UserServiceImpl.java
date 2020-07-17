@@ -3,14 +3,13 @@
  */
 package com.ztc.springB.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import com.ztc.springB.bean.AwardInfo;
 import com.ztc.springB.bean.ImportAsynInfo;
 import com.ztc.springB.dao.AwardInfoMapper;
+import com.ztc.springB.dao.UserMapper;
 import com.ztc.springB.dto.AwardInfoExportDTO;
 import com.ztc.springB.dto.ExcelToObjectDTO;
+import com.ztc.springB.model.User;
+import com.ztc.springB.service.IUserService;
 import com.ztc.springB.utils.ExcelUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
@@ -19,13 +18,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ztc.springB.dao.UserMapper;
-import com.ztc.springB.model.User;
-import com.ztc.springB.service.IUserService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author wangzhiguo
@@ -141,6 +139,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public Integer insertList(Map<String, Long> map) {
 		return userMapper.insertList(map);
+	}
+
+	@Override
+	public void insertUser(User user) {
+		userMapper.insertUser(user);
 	}
 
 }

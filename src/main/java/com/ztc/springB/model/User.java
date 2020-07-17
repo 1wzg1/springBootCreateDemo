@@ -3,31 +3,23 @@
  */
 package com.ztc.springB.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
+import java.util.Date;
+
 /**
  * @author wangzhiguo
  *
  * 2018年11月8日
  */
+@Data
 public class User {
 	
     private int id;
     private String name;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Date create_time;
     
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + "]";
-	}
-	   
+
 }

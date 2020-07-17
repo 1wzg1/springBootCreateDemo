@@ -3,16 +3,10 @@
  */
 package com.ztc.springB.controller;
 
-import java.io.*;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.ztc.springB.bean.Person;
 import com.ztc.springB.dto.ExportUpdateDTO;
+import com.ztc.springB.model.User;
+import com.ztc.springB.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -20,12 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import com.ztc.springB.model.User;
-import com.ztc.springB.service.IUserService;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author wangzhiguo
@@ -54,13 +54,14 @@ public class TestController {
        return "hello";
    }
    
-   @RequestMapping("/data")
+   @PostMapping("/data")
    @ResponseBody
-   @ApiImplicitParam(name = "user", value = "单个用户信息", dataType = "User")
    @ApiOperation(value = "获取用户信息",notes = "获取信息")
-   public List<User> test2(@RequestParam User user){
-      System.out.println(user.getId()+":4444444444,"+user.getName());
-      User user1 = new User();
+   public List<User> test2(@RequestBody List<User> userList){
+      userList.forEach(e->{
+         System.out.println(e);
+      });
+      //userService.insertUser(user);
       return userService.getList();
    }
    @GetMapping("/downloadAddCardFtl")
